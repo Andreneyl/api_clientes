@@ -74,7 +74,8 @@ Exemplo de body:
 
 1. Copie a pasta para `C:\xampp\htdocs\api_clientes`
 2. Inicie Apache e MySQL no painel do XAMPP
-3. Acesse `http://localhost/api_clientes/public/index.php`
+3. Altere a variável de ambiente PATH para o XAMPP `$env:PATH = "C:\xampp\php;" + $env:PATH`
+4. Inicie o servidor: `php -S localhost:8000 -t public`
 
 ## Melhorias sugeridas
 
