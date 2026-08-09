@@ -12,10 +12,10 @@ class Connection
     public static function getInstance(): PDO
     {
         if (self::$instance === null) {
-            $host = 'upmobb.tech';
-            $db   = 'app_upmobb';
-            $user = 'app_user';
-            $pass = 'Application2027!';
+            $host = 'plum-partridge-156259.hostingersite.com';
+            $db   = 'u220373856_db_clientes';
+            $user = 'u220373856_clientes';
+            $pass = 'F^r$214LFb05';
             $charset = 'utf8mb4';
 
             $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
