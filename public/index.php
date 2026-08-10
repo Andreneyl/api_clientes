@@ -26,7 +26,9 @@ if ($uri === '/api/clientes' && $method === 'GET') {
     $controller->store();
 } elseif (preg_match('/^\/api\/clientes\/(\d+)$/', $uri, $matches) && $method === 'GET') {
     $controller->show((int)$matches[1]);
-} else {
+} elseif (preg_match('/^\/api\/clientes\/(\d+)$/', $uri, $matches) && $method === 'PUT') {
+    $controller->update((int) $matches[1]);
+}else {
     http_response_code(404);
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Rota não encontrada.']);

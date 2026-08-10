@@ -26,10 +26,11 @@ Projeto simples em PHP que expõe uma API REST para gerenciar clientes.
 
 A conexão está definida em `src/Database/Connection.php`:
 
-- host: `upmobb.tech`
-- database: `app_upmobb`
-- usuário: `app_user`
-- senha: `Application2027!`
+- host: `76.13.88.7`
+- database: `u220373856_db_clientes`
+- usuário: `u220373856_clientes`
+- senha: `F^r$214LFb05!`
+- charset: `utf8mb4`
 
 > Recomenda-se mover essas credenciais para variáveis de ambiente ou arquivo de configuração seguro em produção.
 
@@ -51,34 +52,44 @@ A conexão está definida em `src/Database/Connection.php`:
 
 - Método: `POST`
 - URL: `/api/clientes`
-- Body: JSON com campos `nome` e `email`
+- Body: JSON com os campos `nome`, `email`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade` e `uf`
 - Retorna: JSON com mensagem de sucesso e `id`
 
 Exemplo de body:
 
 ```json
 {
-  "nome": "João Silva",
-  "email": "joao@exemplo.com"
+  "nome": "Carlos Eduardo da Silva",
+  "email": "carlos.silva@email.com",
+  "cep": "80010-010",
+  "logradouro": "Rua XV de Novembro",
+  "numero": "450",
+  "complemento": "Apto 32",
+  "bairro": "Centro",
+  "cidade": "Curitiba",
+  "uf": "PR"
 }
 ```
 
 ## Observações
 
 - O projeto usa CORS aberto (`*`) e headers JSON globais.
-- Campos obrigatórios para criação são `nome` e `email`.
-- O controller filtra `nome` e valida `email` antes de inserir no banco.
+- Campos obrigatórios para criação são `nome`, `email`, `cep`, `numero`, `complemento`, `bairro`, `cidade` e `uf`.
+- Campo não obrigatório `logradouro`
+- O controller verifica todos campos obrigatórios antes de inserir no banco.
 - Se a rota não for reconhecida, retorna `404` em JSON.
 
 ## Como rodar localmente com XAMPP
 
 1. Copie a pasta para `C:\xampp\htdocs\api_clientes`
 2. Inicie Apache e MySQL no painel do XAMPP
-3. Acesse `http://localhost/api_clientes/public/index.php`
+3. Altere a variável de ambiente PATH para o XAMPP `$env:PATH = "C:\xampp\php;" + $env:PATH`
+4. Inicie o servidor: `php -S localhost:8000 -t public`
+5. Com o servidor iniciado a base url para teste será: `http://localhost:8000/`
 
 ## Melhorias sugeridas
 
 - separar configuração de ambiente e credenciais sensíveis
-- adicionar endpoints de atualização e exclusão
+- adicionar mais camadas
 - implementar validações mais robustas
 - adicionar testes automatizados
