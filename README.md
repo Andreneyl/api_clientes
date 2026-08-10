@@ -1,6 +1,6 @@
 # API de Clientes
 
-Projeto simples em PHP que expõe uma API REST para gerenciar clientes.
+Projeto básico em PHP que disponibiliza uma API REST para a gestão de clientes.
 
 ## Visão geral
 
@@ -90,6 +90,6 @@ Exemplo de body:
 ## Melhorias sugeridas
 
 - separar configuração de ambiente e credenciais sensíveis
-- adicionar mais camadas
+- melhorar a estrutura adicionando mais camadas
 - implementar validações mais robustas
 - adicionar testes automatizados

@@ -7,6 +7,11 @@ use PDO;
 
 class ClienteController
 {
+    /**
+     * Conexão com o banco de dados.
+     *
+     * @var PDO
+     */
     private PDO $db;
 
     public function __construct()
@@ -14,6 +19,13 @@ class ClienteController
         $this->db = Connection::getInstance();
     }
 
+    /**
+     * Lista todos os clientes cadastrados.
+     *
+     * Os clientes são ordenados pelo nome em ordem alfabética.
+     *
+     * @return void
+     */
     public function index(): void
     {
         $stmt = $this->db->query("SELECT `id`, `nome`, `email`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `uf` FROM `clientes` ORDER BY `nome` ASC");
@@ -22,10 +34,17 @@ class ClienteController
         $this->sendJson($clientes, 200);
     }
 
+    /**
+     * Exibe os dados de um cliente específico.
+     *
+     * @param int $id ID do cliente.
+     *
+     * @return void
+     */
     public function show(int $id): void
     {
         $this->validateClient($id);
-        
+
         $stmt = $this->db->prepare("SELECT `id`, `nome`, `email`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `uf` FROM `clientes` WHERE id = :id");
         $stmt->execute(['id' => $id]);
         $cliente = $stmt->fetch();
@@ -38,6 +57,14 @@ class ClienteController
         $this->sendJson($cliente, 200);
     }
 
+    /**
+     * Cadastra um novo cliente.
+     *
+     * Os dados são recebidos através do corpo da requisição em formato JSON.
+     * Após a validação, o cliente é inserido no banco de dados.
+     *
+     * @return void
+     */
     public function store(): void
     {
         $data = json_decode(file_get_contents('php://input'), true);
@@ -69,6 +96,16 @@ class ClienteController
         $this->sendJson(['message' => 'Cliente criado com sucesso.', 'id' => $id], 201);
     }
 
+    /**
+     * Atualiza os dados de um cliente existente.
+     *
+     * Os dados são recebidos através do corpo da requisição em formato JSON.
+     * É realizada uma validação. O cliente deve existir antes que a atualização seja realizada.
+     *
+     * @param int $id ID do cliente que será atualizado.
+     *
+     * @return void
+     */
     public function update(int $id): void
     {
         $this->validateClient($id);
@@ -102,6 +139,17 @@ class ClienteController
             $this->sendJson([ 'id' => $id, 'message' => 'Cliente atualizado com sucesso.'], 200);
     }
 
+    /**
+     * Envia uma resposta HTTP no formato JSON.
+     *
+     * Define o código HTTP e o Content-Type da resposta antes
+     * de serializar os dados para JSON.
+     *
+     * @param mixed $data Dados que serão retornados na resposta.
+     * @param int $statusCode Código HTTP da resposta.
+     *
+     * @return void
+     */
     private function sendJson(mixed $data, int $statusCode = 200): void
     {
         http_response_code($statusCode);
@@ -110,6 +158,16 @@ class ClienteController
         exit;
     }
 
+    /**
+     * Valida os dados obrigatórios recebidos no corpo da requisição.
+     *
+     * Verifica se os campos obrigatórios estão presentes e não estão vazios.
+     * Caso existam erros de validação, retorna uma resposta HTTP 422.
+     *
+     * @param array $data Dados recebidos na requisição.
+     *
+     * @return void
+     */
     private function validateDataBody(array $data): void
     {
         $requiredFields = ['nome', 'email', 'cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf'];
@@ -128,6 +186,15 @@ class ClienteController
         ], 422);
     }
 
+    /**
+     * Verifica se um cliente existe no banco de dados.
+     *
+     * Caso o cliente não seja encontrado, retorna uma resposta HTTP 404.
+     *
+     * @param int $clientId ID do cliente que será verificado.
+     *
+     * @return void
+     */
     private function validateClient(int $clientId): void
     {
         $stmt = $this->db->prepare( "SELECT `id` FROM `clientes` WHERE `id` = :id" );
