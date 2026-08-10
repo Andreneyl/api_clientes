@@ -69,6 +69,15 @@ class ClienteController
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
+        if (!is_array($data)) {
+            http_response_code(400);
+            
+            $this->sendJson([
+                'success' => false,
+                'message' => 'O corpo da requisição deve conter um JSON válido.',
+            ], 422);
+        }
+
         $this->validateDataBody($data);
 
         $sql = "
@@ -111,6 +120,15 @@ class ClienteController
         $this->validateClient($id);
 
         $data = json_decode(file_get_contents('php://input'), true);
+
+        if (!is_array($data)) {
+            http_response_code(400);
+            
+            $this->sendJson([
+                'success' => false,
+                'message' => 'O corpo da requisição deve conter um JSON válido.',
+            ], 422);
+        }
         
         $this->validateDataBody($data);
 
@@ -180,10 +198,12 @@ class ClienteController
             }
         }
 
-        $this->sendJson([
-            'message' => 'Dados inválidos.',
-            'errors' => $erros
-        ], 422);
+        if (!empty($erros)) {
+            $this->sendJson([
+                'message' => 'Dados inválidos.',
+                'errors' => $erros
+            ], 422);
+        }
     }
 
     /**
