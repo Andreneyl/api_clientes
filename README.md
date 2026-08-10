@@ -89,7 +89,8 @@ Exemplo de body:
 
 ## Melhorias sugeridas
 
-- separar configuração de ambiente e credenciais sensíveis
+- separar configuração de ambiente e credenciais sensíveis com .env
+- adicionar autenticação bearer
 - melhorar a estrutura adicionando mais camadas
 - implementar validações mais robustas
 - adicionar testes automatizados
