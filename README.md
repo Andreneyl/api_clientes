@@ -45,7 +45,7 @@ composer install
 3. Configure o banco de dados utilizando o script:
 
 ```text
-database/dump.sql
+database/u220373856_db_clientes.sql
 ```
 
 4. Configure os dados de conexão com o banco em:
@@ -75,9 +75,23 @@ O script cria o banco de dados e a tabela necessária para o funcionamento da AP
 Para configurar o banco:
 
 1. Abra o MySQL ou phpMyAdmin.
-2. Execute o conteúdo de `database/dump.sql`.
+2. Execute o conteúdo de `database/u220373856_db_clientes.sql`.
 3. Verifique as credenciais utilizadas pela aplicação.
 4. Configure a conexão em `src/Database/Connection.php`.
+
+## Testes da API
+
+A API pode ser testada utilizando o Postman.
+
+A coleção está disponível em:
+
+`docs/postman/api-clientes.postman_collection.json`
+
+Para utilizar:
+
+1. Abra o Postman.
+2. Importe o arquivo da coleção.
+3. Execute as requisições disponíveis.
 
 ### Segurança
 

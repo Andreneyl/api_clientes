@@ -1,0 +1,297 @@
+{
+  "info": {
+    "_postman_id": "c157b632-7a49-47f8-87cc-e73c5700da2c",
+    "name": "Teste API Clientes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40234103"
+  },
+  "item": [
+    {
+      "name": "Remoto",
+      "item": [
+        {
+          "name": "Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://plum-partridge-156259.hostingersite.com/api/clientes",
+              "protocol": "https",
+              "host": [
+                "plum-partridge-156259",
+                "hostingersite",
+                "com"
+              ],
+              "path": [
+                "api",
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar cliente",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://plum-partridge-156259.hostingersite.com/api/clientes",
+              "protocol": "https",
+              "host": [
+                "plum-partridge-156259",
+                "hostingersite",
+                "com"
+              ],
+              "path": [
+                "api",
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes de cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://plum-partridge-156259.hostingersite.com/api/clientes/19",
+              "protocol": "https",
+              "host": [
+                "plum-partridge-156259",
+                "hostingersite",
+                "com"
+              ],
+              "path": [
+                "api",
+                "clientes",
+                "19"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Alterar cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lucas Gabriel Oliveira\",\r\n  \"email\": \"lucas.oliveira@email.com\",\r\n  \"cep\": \"80530-000\",\r\n  \"logradouro\": \"Avenida Cândido de Abreu\",\r\n  \"numero\": \"535\",\r\n  \"complemento\": \"Conjunto 604\",\r\n  \"bairro\": \"Centro Cívico\",\r\n  \"cidade\": \"Curitiba\",\r\n  \"uf\": \"PR\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://plum-partridge-156259.hostingersite.com/api/clientes/19",
+              "protocol": "https",
+              "host": [
+                "plum-partridge-156259",
+                "hostingersite",
+                "com"
+              ],
+              "path": [
+                "api",
+                "clientes",
+                "19"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lucas Gabriel Oliveira\",\r\n  \"email\": \"lucas.oliveira@email.com\",\r\n  \"cep\": \"80530-000\",\r\n  \"logradouro\": \"Avenida Cândido de Abreu\",\r\n  \"numero\": \"535\",\r\n  \"complemento\": \"Conjunto 604\",\r\n  \"bairro\": \"Centro Cívico\",\r\n  \"cidade\": \"Curitiba\",\r\n  \"uf\": \"PR\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://plum-partridge-156259.hostingersite.com/api/clientes/5",
+              "protocol": "https",
+              "host": [
+                "plum-partridge-156259",
+                "hostingersite",
+                "com"
+              ],
+              "path": [
+                "api",
+                "clientes",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Local",
+      "item": [
+        {
+          "name": "Detalhes do cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/clientes/21",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "clientes",
+                "21"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Carlos Eduardo da Silva\",\r\n  \"email\": \"carlos.silva@email.com\",\r\n  \"cep\": \"80010-010\",\r\n  \"logradouro\": \"Rua XV de Novembro\",\r\n  \"numero\": \"450\",\r\n  \"complemento\": \"Apto 32\",\r\n  \"bairro\": \"Centro\",\r\n  \"cidade\": \"Curitiba\",\r\n  \"uf\": \"PR\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/clientes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar clientes",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/clientes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Alterar cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lucas Gabriel Oliveira\",\r\n  \"email\": \"lucas.oliveira@email.com\",\r\n  \"cep\": \"80530-000\",\r\n  \"logradouro\": \"Avenida Cândido de Abreu\",\r\n  \"numero\": \"535\",\r\n  \"complemento\": \"Conjunto 604\",\r\n  \"bairro\": \"Centro Cívico\",\r\n  \"cidade\": \"Curitiba\",\r\n  \"uf\": \"PR\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/clientes/21",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "clientes",
+                "21"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lucas Gabriel Oliveira\",\r\n  \"email\": \"lucas.oliveira@email.com\",\r\n  \"cep\": \"80530-000\",\r\n  \"logradouro\": \"Avenida Cândido de Abreu\",\r\n  \"numero\": \"535\",\r\n  \"complemento\": \"Conjunto 604\",\r\n  \"bairro\": \"Centro Cívico\",\r\n  \"cidade\": \"Curitiba\",\r\n  \"uf\": \"PR\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/clientes/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "clientes",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
