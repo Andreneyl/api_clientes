@@ -112,6 +112,9 @@ api_clientes/
 │   │   └── ClienteController.php
 │   └── Database/
 │       └── Connection.php
+├── docs/
+│   └── postman/
+│       └── crud-clientes.postman_collection.json
 ├── composer.json
 └── README.md
 ```
