@@ -80,29 +80,35 @@ class ClienteController
 
         $this->validateDataBody($data);
 
-        $sql = "
-            INSERT INTO `clientes`
-                (`nome`, `email`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `uf`)
-            VALUES
-                (:nome, :email, :cep, :logradouro, :numero, :complemento, :bairro, :cidade, :uf)";
+        try {
+            $sql = "
+                INSERT INTO `clientes`
+                    (`nome`, `email`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `uf`)
+                VALUES
+                    (:nome, :email, :cep, :logradouro, :numero, :complemento, :bairro, :cidade, :uf)";
 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            'nome'        => trim($data['nome']),
-            'email'       => trim($data['email']),
-            'cep'         => trim($data['cep']),
-            'logradouro'  => trim($data['logradouro']),
-            'numero'      => trim($data['numero']),
-            'complemento' => !empty($data['complemento'])
-                ? trim($data['complemento'])
-                : null,
-            'bairro'      => trim($data['bairro']),
-            'cidade'      => trim($data['cidade']),
-            'uf'          => strtoupper(trim($data['uf']))
-        ]);
+            $stmt = $this->db->prepare($sql);
 
-        $id = $this->db->lastInsertId();
-        $this->sendJson(['message' => 'Cliente criado com sucesso.', 'id' => $id], 201);
+            $stmt->execute([
+                'nome'        => trim($data['nome']),
+                'email'       => trim($data['email']),
+                'cep'         => trim($data['cep']),
+                'logradouro'  => trim($data['logradouro']),
+                'numero'      => trim($data['numero']),
+                'complemento' => !empty($data['complemento'])
+                    ? trim($data['complemento'])
+                    : null,
+                'bairro'      => trim($data['bairro']),
+                'cidade'      => trim($data['cidade']),
+                'uf'          => strtoupper(trim($data['uf']))
+            ]);
+
+            $id = $this->db->lastInsertId();
+
+            $this->sendJson(['message' => 'Cliente criado com sucesso.', 'id' => $id], 201);
+        } catch (\PDOException $e) {
+            $this->sendJson(['message' => 'Erro ao criar o cliente.'], 500);
+        }
     }
 
     /**
@@ -131,8 +137,9 @@ class ClienteController
         }
         
         $this->validateDataBody($data);
-
-        $sql = "
+        
+        try {
+            $sql = "
             UPDATE `clientes`
                 SET `nome` = :nome, `email` = :email, `cep` = :cep, `logradouro` = :logradouro, `numero` = :numero
                 , `complemento` = :complemento, `bairro` = :bairro, `cidade` = :cidade, `uf` = :uf
@@ -155,6 +162,38 @@ class ClienteController
             ]);
             
             $this->sendJson([ 'id' => $id, 'message' => 'Cliente atualizado com sucesso.'], 200);
+
+        } catch (\PDOException $e) {
+            $this->sendJson(['message' => 'Erro ao atualizar o cliente.'], 500);
+        }
+    }
+
+    /**
+     * Exclui um cliente pelo ID.
+     *
+     * @param int $id
+     *
+     * @return void
+     */
+    public function delete(int $id): void
+    {
+        $this->validateClient($id);
+
+        try {
+            $stmt = $this->db->prepare(
+                "DELETE FROM `clientes`
+                WHERE `id` = :id"
+            );
+
+            $stmt->execute([
+                ':id' => $id
+            ]);
+
+            $this->sendJson(['message' => 'Cliente excluído com sucesso.'], 200);
+
+        } catch (\PDOException $e) {
+            $this->sendJson(['message' => 'Erro ao excluir o cliente.'], 500);
+        }
     }
 
     /**
